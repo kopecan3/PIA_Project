@@ -1,0 +1,28 @@
+Haar Cascade uses features which are some defined patterns. 
+They are defined in the feature set and can detect e.g. vertical edge.
+Such and ege divides image to a set of pixels with lower intensities and
+set of pixels with higher intensities.
+
+Than it makes the difference. If there is result close to 1, there is a vertical
+The alghorithm works on the principle of summing 
+The algorithm goes through the whole step by step.
+In each step, from the defined area it calculates sum of pixel intensities two vertical subareas.
+If the result is close to one, there is an edge.
+
+Similar approach is used for other features.
+
+Afterwards adaboost is used which just decreases number of features used.
+If the so called wak learner does not detect right image, it is just easily not used for future training.
+
+Training
+For each feature, it finds the best threshold which will classify the faces to positive and negative.
+The finidng is doing by updating the weights especially of the misclassified images. 
+At the beginning all images hve same weight.
+
+
+Read more about the alghorithm:
+https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
+https://docs.opencv.org/4.x/d2/d99/tutorial_js_face_detection.html
+https://machinelearningmastery.com/using-haar-cascade-for-object-detection/
+https://medium.com/analytics-vidhya/haar-cascades-explained-38210e57970d
+https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html

@@ -1,0 +1,34 @@
+For training Haar Cascade some command line tool which works in opencv 3.x
+It was broken in opencv 4.x therefore it is necessary to use opencv 3.x for training
+(unless it has been fixed in version 4.x).
+However after training has been finished (the result .xml file has been obrained), 
+it is possible to use 4.x version again.
+
+This script describes how to build certain version of opencv.
+https://machinelearningmastery.com/training-a-haar-cascade-object-detector-in-opencv/
+
+
+Installation opencv
+
+System: WSL Ubuntu-18.04
+
+# Install all dependecies
+sudo apt update && sudo apt install -y cmake g++ wget unzip
+sudo apt install ffmpeg
+sudo apt install pkgconf
+
+
+# Install ffmpeg since opencv requires for build some libraries and packages like libavcodec etc. but not  contains them.
+# To fix this install ffmpeg which is also quite common app used in linux e.g. for video processing.
+
+mkdir PIA_Project
+cd PIA_Project
+
+wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.zip
+unzip opencv
+
+mkdir build && cd build
+cmake ../opencv-3.4
+make
+sudo apt install
+
