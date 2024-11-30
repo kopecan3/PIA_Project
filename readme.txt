@@ -10,7 +10,8 @@ Technical specifications:
 System: WSL Ubuntu-18.04
 
 Training Haar Cascade
-Please read file buildOpenCV.txt to build opencv version 3.x.
+Please read file buildOpenCV.txt to build opencv version 3.x. 
+(Or refer to pythonWindows txt if you want to use e.g. python on Windows for the training.)
 Than read the file training.txt to train the HaarCascade
 
 Folder structure:

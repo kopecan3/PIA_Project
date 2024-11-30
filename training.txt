@@ -1,0 +1,45 @@
+###########     Training HaarCascade     ##########
+
+Training was done inside "src" folder therefore also commands examples and naming respect it.
+
+###   Commands used for training cascade:   ###
+
+opencv_annotation 	
+	enables to draw rectangles around detected objects (= selected areas) in positive images 
+	and write the coordinates of selected areas into text file.
+opencv_createsamples enables to create vector file.
+opencv_traincascade creates classifier from training with vector file. 
+
+
+
+###   Selecting the objects and writing their position in the images to the file   ###
+
+
+pth_cv/build/bin/opencv_annotation --annotations=pth_txt/coordinates.txt --images=pth_pos/pos_img/
+
+pth_cv\opencv\build\x64\vc15\bin\opencv_annotation.exe --anotations=coordinates.txt --images=pth_pos/pos_img/
+../build/bin/opencv_annotation --annotations=./objects/coordinates.txt --images=./pos_img/
+
+pth_cv = path to location of opencv build folder (or where you extracted you rexe file in case you used windows version).
+pth_txt = path where you want your txt file with coordinates. The fila has here name "coordinates".
+pth_pos = path to folder with positive images. The folder has here name "pos_img".
+
+
+Keys used during the selection:
+  (e.g. in this case the fullpath was:  )
+> after pressing Enter, the rectangle will be drawn by clicking and drawing it.
+> by clicking again the rectangle will be selected
+  > click elsewhere if you don't want the drawn rectangle
+> by pressing C the coordinates will be written to file and the rectangle turns green
+  > press T if you want to get back last already selected (so last green) rectangle
+> click N to go to another positive image
+> find the objects in all positive images
+  > press Esc to exit if you don't want to iterate through every image. 
+    If you iterate througgh all it will close automatically.
+
+
+Notes: 
+Don't create rectangle around every detected object if you think the object is bad for training.  
+
+###   Creating .vec file   ###
+
