@@ -18,6 +18,8 @@ opencv_traincascade creates classifier from training with vector file.
 pth_cv/build/bin/opencv_annotation --annotations=pth_txt/coordinates.txt --images=pth_pos/pos_img/
 
 pth_cv\opencv\build\x64\vc15\bin\opencv_annotation.exe --anotations=coordinates.txt --images=pth_pos/pos_img/
+
+Example of cpp build version: 
 ../build/bin/opencv_annotation --annotations=./objects/coordinates.txt --images=./pos_img/
 
 pth_cv = path to location of opencv build folder (or where you extracted you rexe file in case you used windows version).
@@ -43,3 +45,52 @@ Don't create rectangle around every detected object if you think the object is b
 
 ###   Creating .vec file   ###
 
+pth_cv/build/bin/opencv_createsamples -info pth_txt/coordinates.txt -w 24 -h 24 -num samples_number -vec vec_pth/vector.vec
+
+pth_cv\opencv\build\x64\vc15\bin\opencv_createsamples.exe -info pth_txt/coordinates.txt -w 24 -h 24 -num samples_number -vec vec_pth/vector.vec
+
+
+../build/bin/opencv_createsamples -info objects/coordinates.txt -w 24 -h 24 -num samples_number -vec objects/vector.vec
+
+  Parameters:
+  coordinates.txt - name of file txt file (=target_txt_file) with coordinates of slected areas.
+  -w -h width and height of smallest object which should the classifier detect
+  (typical is 20x20 or 24x24 if larger, the training can take more time)
+  samples_number number of samples which will be chosen from the cropped positive objects. 
+  		  If larger than the number of samples we selected, 
+		  than all selected samples in previous step will be chosen as training samples.
+          However sometimes with really large amount of samples, we can juast want to select some.
+vector.vec name or path with name of vector file which will be created from chosen samples.
+
+vec_pth = path where we want to have vec file. Here the file has name "vector".
+
+
+Note if an error occures, probably there is mistake in paths in txt file 
+Especially check if the images in the folder with positive images have names not containing any spaces. 
+Also check path to positive images in the file txt. Sometimes it happen that you decide to move the images and the path stays wrong. 
+It must be absolute path or relative to folder from which you are running the command line. 
+
+###   Training a classifier   ###
+
+pth_cv/build/bin/opencv_traincascade -data classifierFolder -vec vecName.vec -bg txtNegFileAK.txt -w 24 -h 24 -numPos numberPositiveSamples -numNeg numberNegativeSamples -numStages numberStages -maxFalseAlarmRate rateFalse -minHitRate rateHit
+
+pth_cv\opencv\build\x64\vc15\bin\opencv_traincascade.exe -data classifierFolder -vec vecName.vec -bg txtNegFileAK.txt -w 24 -h 24 -numPos numberPositiveSamples -numNeg numberNegativeSamples -numStages numberStages -maxFalseAlarmRate rateFalse -minHitRate rateHit
+
+p../build/bin/opencv_traincascade -data classifierFolder -vec vecName.vec -bg txtNegFileAK.txt -w 24 -h 24 -numPos numberPositiveSamples -numNeg numberNegativeSamples -numStages numberStages -maxFalseAlarmRate rateFalse -minHitRate rateHit
+
+
+ Parameters:
+  classifierFolder  - folder name or path with folder name to which the classifier should be saved.
+  vecName.vec name or path with name of vector file created from chosen samples.
+  txtNegFileAK.txt - txt file or path with txt file containing paths to negative samples.
+  -w -h width and height of detection window. 
+         Must be same as -w -h width and height of smallest object whit should the classifier detect in previous step
+  numberPositiveSamples - number of positive samples to be used. Must be smaller than number of rectangles from which we created the samples 
+                        numberPositiveSamples < samples_number if we selected less rectangles in previous step than we created
+                        numberPositiveSamples < total_number_of_rectangles if we selected all rectangles in previous step
+  numberPositiveSamples - number of negative samples
+                        Negative samples can be higher than the number of negative images because it crops only parts from negative samples when training.
+  numberStages - number of stages, depends on size of positive samples. 
+ 		  For small number of positive samples (circa 100)10 -15 is ideal. Too large number can lead to overtraining.
+  rateFalse what ratio of wrong classified samples we accept as ok.
+  rateHit what samples we want to select as right.
