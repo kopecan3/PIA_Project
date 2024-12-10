@@ -1,10 +1,4 @@
 This file describes how to use opencv in python on Windows.
-Prerequisites:
-
-> python
-> installed opencv
-> positive images (images containig desired object = object to be detected)
-> negative images (images not containing desired object)
 
 
 Download pre-compiled opencv version:
@@ -16,4 +10,6 @@ Download pre-compiled opencv version:
 > in showd dialog window select folder to which you want to extract precompiled opencv ideally to project folder
   (let's say the opencv was downloaded and unwrapped in C:\Users\UserX\Desktop\PIA_Project)
 
-  
+
+
+For training  commands see: training.txt.

@@ -76,7 +76,7 @@ pth_cv/build/bin/opencv_traincascade -data classifierFolder -vec vecName.vec -bg
 
 pth_cv\opencv\build\x64\vc15\bin\opencv_traincascade.exe -data classifierFolder -vec vecName.vec -bg txtNegFileAK.txt -w 24 -h 24 -numPos numberPositiveSamples -numNeg numberNegativeSamples -numStages numberStages -maxFalseAlarmRate rateFalse -minHitRate rateHit
 
-p../build/bin/opencv_traincascade -data classifierFolder -vec vecName.vec -bg txtNegFileAK.txt -w 24 -h 24 -numPos numberPositiveSamples -numNeg numberNegativeSamples -numStages numberStages -maxFalseAlarmRate rateFalse -minHitRate rateHit
+../build/bin/opencv_traincascade -data classifierFolder -vec vecName.vec -bg txtNegFileAK.txt -w 24 -h 24 -numPos numberPositiveSamples -numNeg numberNegativeSamples -numStages numberStages -maxFalseAlarmRate rateFalse -minHitRate rateHit
 
 
  Parameters:
